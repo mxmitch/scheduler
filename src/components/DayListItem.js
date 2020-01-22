@@ -1,7 +1,6 @@
 import React from "react";
 
 import "components/DayListItem.scss";
-import { tsPropertySignature } from "@babel/types";
 
 import classNames from "classnames";
 
