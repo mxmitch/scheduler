@@ -1,32 +1,32 @@
-import React, { useEffect, setState, useState } from "react";
-import axios from "axios";
-import "components/Application.scss";
+import React, { useEffect, setState, useState } from "react"
+import axios from "axios"
+import "components/Application.scss"
 import Appointment from "components/Appointment"
 import DayList from "./DayList"
 import getAppointmentsForDay from "../helpers/selectors"
 
 
 
-
-
-
-
 export default function Application() {
-  const [ state, setState ] = useState({ day: "Monday", days: [], appointments: [] });
+  const [ state, setState ] = useState({ day: "Monday", days: [], appointments: [], interviewers: {} });
 
   const setDay = day => setState({ ...state, day });
-  
-  useEffect(() => {    
-    const promise1 = axios.get("/api/days");
-    const promise2 = axios.get("/api/appointments");
-    const promise3 = axios.get("api/interviews")
 
+  useEffect(() => {    
+    const promise1 = axios.get("http://localhost:5000/api/days");
+    const promise2 = axios.get("http://localhost:5000/api/appointments");
+    const promise3 = axios.get("http://localhost:5000/api/interviewers");
+    
     Promise.all([promise1, promise2, promise3]).then((res) => {
-      setState({ ...state, days: res[0].data, appointments: res[1].data, interviews: res[2].data });
-    });
-  }, []);
-  
+      setState({ ...state, days: res[0].data, appointments: res[1].data, interviewers: res[2].data 
+      });
+    })
+  }, []); 
+
   const newAppointments = getAppointmentsForDay(state, state.day);
+
+  console.log(state.interviewers)
+
 
   const schedule = newAppointments.map(appointment => {
     return (
