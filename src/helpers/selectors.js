@@ -1,11 +1,6 @@
 import React from "react";
-import { stat } from "fs";
 
-export default function getAppointmentsForDay(state, day) {
-  //find object in state.days who's name matches the provided day
-  //iterate thru the appointments array for the day where its id matches the id of states.appointment
-  // if there are no appointments on a given day return an empty array
-
+export const getAppointmentsForDay = (state, day) => {
   const dayObject = state.days.filter(one => one.name === day)[0];
 
   if (dayObject) {
@@ -18,9 +13,14 @@ export default function getAppointmentsForDay(state, day) {
   }
 };  
 
-
-// export const getInterview = (state, interview) => {
-
-// }
-
+export const getInterview = (state, interview) => {
+  if (interview !== null) {
+    let newObject = {};
+    newObject["student"] = interview.student;
+    newObject["interviewer"] = state.interviewers[interview.interviewer];
+    return newObject;
+  } else {
+    return null
+  }
+}
 
