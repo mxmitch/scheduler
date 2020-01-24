@@ -11,7 +11,21 @@ export const getAppointmentsForDay = (state, day) => {
   } else {
       return [];
   }
-};  
+};
+
+export const getInterviewersForDay = (state, day) => {
+  const dayObject = state.days.filter(one => one.name === day)[0];
+
+  if (dayObject) {
+    const matchWithId = dayObject.interviewers.map(function(x) {
+       return state.interviewers[x]
+    })
+      console.log(matchWithId)
+      return matchWithId
+  } else {
+      return [];
+  }
+};
 
 export const getInterview = (state, interview) => {
   if (interview !== null) {
