@@ -20,7 +20,6 @@ export const getInterviewersForDay = (state, day) => {
     const matchWithId = dayObject.interviewers.map(function(x) {
        return state.interviewers[x]
     })
-      console.log(matchWithId)
       return matchWithId
   } else {
       return [];

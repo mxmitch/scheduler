@@ -1,22 +1,31 @@
-import React from "react";
+import React, { useEffect } from "react";
 
 import Header from "components/Appointment/Header";
 import Show from "components/Appointment/Show";
 import Empty from "components/Appointment/Empty";
 import Form from "components/Appointment/Form";
+import Status from "components/Appointment/Status";
 import "components/Appointment/styles.scss";
 import useVisualMode from "hooks/useVisualMode";
-import { background } from "@storybook/theming";
 
 export default function Appointment(props) {
 
   const SHOW = "SHOW";
   const EMPTY = "EMPTY";
   const CREATE = "CREATE";
-  // const STATUS = "STATUS";
+  const SAVING = "STATUS";
   // const CONFIRM = "CONFIRM";
   // const ERROR = "ERROR";
   // const FORM = "FORM";
+
+  function save(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
+    props.bookInterview(props.id, interview);
+  }
+
 
   const { mode, transition, back } = useVisualMode(
     props.interview ? SHOW : EMPTY
@@ -37,8 +46,10 @@ export default function Appointment(props) {
       {mode === CREATE && (
         <Form
           interviewers={props.interviewers}
-          onCancel={() => back()}
+          onCancel={back}
+          onSave={save}
         />)}
+      {mode === SAVING && <Status message="Saving"/>}
     </article>
   )
 } 
