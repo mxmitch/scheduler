@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React from "react";
 
 export default function Show(props) {
   return (
@@ -22,7 +22,7 @@ export default function Show(props) {
             className="appointment__actions-button"
             src="images/trash.png"
             alt="Delete"
-            // onClick={() => props.onDelete(props.student, props.interviewer)}
+            onClick={() => props.onDelete()}
           />
         </section>
       </section>

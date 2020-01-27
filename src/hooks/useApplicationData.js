@@ -35,24 +35,24 @@ export default function useVisualMode(initial) {
       });
   }
 
-  // function cancelInterview(id, interview) {
-  //   console.log(id, interview);
+  function cancelInterview(id, interview) {
+    console.log(id, interview);
 
-  //   return axios
-  //     .delete(`http://localhost:5000/api/appointments/${id}`, {
-  //       interview
-  //     })
-  //     .catch(function(error) {
-  //       console.log(error);
-  //     });
-  // }
+    return axios
+      .delete(`http://localhost:5000/api/appointments/${id}`, {
+        interview
+      })
+      .catch(function(error) {
+        console.log(error);
+      });
+  }
 
   useEffect(() => {
-    const promise1 = axios.get("http://localhost:5000/api/days");
-    const promise2 = axios.get("http://localhost:5000/api/appointments");
-    const promise3 = axios.get("http://localhost:5000/api/interviewers");
+    const daysAPI = axios.get("http://localhost:5000/api/days");
+    const appointmentsAPI = axios.get("http://localhost:5000/api/appointments");
+    const interviewersAPI = axios.get("http://localhost:5000/api/interviewers");
 
-    Promise.all([promise1, promise2, promise3]).then(res => {
+    Promise.all([daysAPI, appointmentsAPI, interviewersAPI]).then(res => {
       setState({
         ...state,
         days: res[0].data,
@@ -62,5 +62,5 @@ export default function useVisualMode(initial) {
     });
   }, []);
 
-  return { state, setDay, bookInterview };
+  return { state, setDay, bookInterview, cancelInterview };
 }
