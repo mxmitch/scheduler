@@ -5,15 +5,17 @@ import "components/DayListItem.scss";
 import classNames from "classnames";
 
 export default function DayListItem(props) {
+  console.log(props);
+
   const formatSpots = function(spot) {
     if (spot > 1) {
-      return spot + " spots remaining"
-    } else if(spot === 1){
-      return spot + " spot remaining"
+      return spot + " spots remaining";
+    } else if (spot === 1) {
+      return spot + " spot remaining";
     } else {
-      return "no spots remaining"
+      return "no spots remaining";
     }
-  }
+  };
 
   const dayClass = classNames("day-list__item", {
     "day-list__item--selected": props.selected,
