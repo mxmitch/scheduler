@@ -35,8 +35,11 @@ export default function Appointment(props) {
       .catch(error => transition(ERROR_SAVE, true));
   }
 
-  function remove() {
-    const interview = null;
+  function remove(name, interviewer) {
+    const interview = {
+      student: name,
+      interviewer
+    };
     transition(DELETING, true);
 
     props

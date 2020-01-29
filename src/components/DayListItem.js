@@ -5,8 +5,6 @@ import "components/DayListItem.scss";
 import classNames from "classnames";
 
 export default function DayListItem(props) {
-  console.log(props);
-
   const formatSpots = function(spot) {
     if (spot > 1) {
       return spot + " spots remaining";
