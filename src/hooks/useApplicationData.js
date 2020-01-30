@@ -1,5 +1,6 @@
 import React, { useReducer, useEffect } from "react";
 import axios from "axios";
+import { getSpotsforDay } from "helpers/selectors";
 
 export default function useApplicationData() {
   const SET_DAY = "SET_DAY";
@@ -52,36 +53,16 @@ export default function useApplicationData() {
           [action.id]: appointment
         };
 
-        //check if interview is null
-        //find day through appoitment id
-        // add one to spots if null/ subtract one from spots if not null
-        const findDay = id => {
-          if (id >= 1 && id <= 5) {
-            return 0;
-          } else if (id >= 6 && id <= 10) {
-            return 1;
-          } else if (id >= 11 && id <= 15) {
-            return 2;
-          } else if (id >= 16 && id <= 20) {
-            return 3;
-          } else {
-            return 4;
-          }
-        };
-
-        console.log(findDay(action.id));
-
-        if (appointment.interview === null) {
-          state.days[findDay(action.id)].spots =
-            state.days[findDay(action.id)].spots - 1;
-        } else {
-          state.days[findDay(action.id)].spots =
-            state.days[findDay(action.id)].spots + 1;
-        }
-
-        return {
+        const betterState = {
           ...state,
           appointments
+        };
+        return {
+          ...betterState,
+          days: state.days.map(day => ({
+            ...day,
+            spots: getSpotsforDay(betterState, day.name)
+          }))
         };
       }
 

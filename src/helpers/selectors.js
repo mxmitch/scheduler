@@ -35,3 +35,15 @@ export const getInterview = (state, interview) => {
     return null;
   }
 };
+
+export const getSpotsforDay = (state, day) => {
+  const dayObject = state.days.filter(one => one.name === day)[0];
+  let counter = 0;
+  dayObject.appointments.forEach(x => {
+    if (state.appointments[x].interview) {
+      counter++;
+    }
+  });
+  console.log(day, state, counter);
+  return 5 - counter;
+};
