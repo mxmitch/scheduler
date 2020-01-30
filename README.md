@@ -8,6 +8,12 @@ Back-end: Node.js, Express, PostgresSQL
 
 Test: Jest, Storybook
 
+## Screenshots
+
+![Interview Scheduler example initial screen and selecting different days](https://github.com/mxmitch/scheduler/blob/master/docs/interview_scheduler_screen1.gif?raw=true)
+
+![Interview Scheduler example of adding and deleting an appointment](https://github.com/mxmitch/scheduler/blob/master/docs/interview_scheduler_screen2.gif?raw=true)
+
 ## Setup
 
 Install dependencies with `npm install`.
