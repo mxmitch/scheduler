@@ -10,7 +10,11 @@ Test: Jest, Storybook
 
 ## Screenshots
 
+### Example 1: Initial screen and selecting days
+
 ![Interview Scheduler example initial screen and selecting different days](https://github.com/mxmitch/scheduler/blob/master/docs/interview_scheduler_screen1.gif?raw=true)
+
+### Example 2: Creating and deleting appointments
 
 ![Interview Scheduler example of adding and deleting an appointment](https://github.com/mxmitch/scheduler/blob/master/docs/interview_scheduler_screen2.gif?raw=true)
 
