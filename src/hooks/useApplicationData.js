@@ -8,9 +8,9 @@ export default function useApplicationData() {
   const SET_INTERVIEW = "SET_INTERVIEW";
 
   useEffect(() => {
-    const daysAPI = axios.get("http://localhost:5000/api/days");
-    const appointmentsAPI = axios.get("http://localhost:5000/api/appointments");
-    const interviewersAPI = axios.get("http://localhost:5000/api/interviewers");
+    const daysAPI = axios.get("/api/days");
+    const appointmentsAPI = axios.get("/api/appointments");
+    const interviewersAPI = axios.get("/api/interviewers");
 
     Promise.all([daysAPI, appointmentsAPI, interviewersAPI]).then(res => {
       dispatch({
@@ -53,15 +53,16 @@ export default function useApplicationData() {
           [action.id]: appointment
         };
 
-        const betterState = {
+        const updatedState = {
           ...state,
           appointments
         };
+
         return {
-          ...betterState,
+          ...updatedState,
           days: state.days.map(day => ({
             ...day,
-            spots: getSpotsforDay(betterState, day.name)
+            spots: getSpotsforDay(updatedState, day.name)
           }))
         };
       }
@@ -79,7 +80,7 @@ export default function useApplicationData() {
 
   function bookInterview(id, interview) {
     return axios
-      .put(`http://localhost:5000/api/appointments/${id}`, {
+      .put(`/api/appointments/${id}`, {
         interview
       })
       .then(() => {
@@ -89,7 +90,7 @@ export default function useApplicationData() {
 
   function cancelInterview(id, interview) {
     return axios
-      .delete(`http://localhost:5000/api/appointments/${id}`, {
+      .delete(`/api/appointments/${id}`, {
         interview
       })
       .then(() => {
