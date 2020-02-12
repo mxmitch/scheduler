@@ -44,6 +44,5 @@ export const getSpotsforDay = (state, day) => {
       counter++;
     }
   });
-  console.log(day, state, counter);
   return 5 - counter;
 };
