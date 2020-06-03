@@ -1,6 +1,6 @@
-import React, { useReducer, useEffect } from "react";
+import { useReducer, useEffect } from "react";
 import axios from "axios";
-import { getSpotsforDay } from "helpers/selectors";
+import { getSpotsForDay } from "helpers/selectors";
 
 export default function useApplicationData() {
   const SET_DAY = "SET_DAY";
@@ -12,7 +12,7 @@ export default function useApplicationData() {
     const appointmentsAPI = axios.get("/api/appointments");
     const interviewersAPI = axios.get("/api/interviewers");
 
-    Promise.all([daysAPI, appointmentsAPI, interviewersAPI]).then(res => {
+    Promise.all([daysAPI, appointmentsAPI, interviewersAPI]).then((res) => {
       dispatch({
         type: SET_APPLICATION_DATA,
         days: res[0].data,
@@ -60,9 +60,9 @@ export default function useApplicationData() {
 
         return {
           ...updatedState,
-          days: state.days.map(day => ({
+          days: state.days.map((day) => ({
             ...day,
-            spots: getSpotsforDay(updatedState, day.name)
+            spots: getSpotsForDay(updatedState, day.name)
           }))
         };
       }
